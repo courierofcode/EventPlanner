@@ -29,10 +29,12 @@ void main() {
   //   // expect(find.text('0'), findsNothing);
   //   // expect(find.text('1'), findsOneWidget);
   // });
-  testWidgets('Logo display test', (WidgetTester tester) async {
+  testWidgets('Signin, Signup, and Reset test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
-    // Verify app name
-    expect(find.text('Event Planner'), findsOneWidget);
+    // Verify widgets are displayed
+    expect(find.text(' Sign Up'), findsOneWidget);
+    expect(find.text('Sign In'), findsOneWidget);
+    expect(find.text('Forgot Password?'), findsOneWidget);
   });
 }
