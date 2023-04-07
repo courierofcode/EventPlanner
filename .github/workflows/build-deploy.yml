@@ -37,8 +37,8 @@ jobs:
     - name: Upload production-ready build files
       uses: actions/upload-artifact@v3
       with:
-        name: production-files-${{ github.sha }}
-        path: .build/web
+        name: production-files
+        path: build/web
 
   deploy:
     name: Deploy
@@ -50,11 +50,11 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
-        name: production-files-${{ github.sha }}
-        path: .build/web
+        name: production-files
+        path: build/web
 
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
+        publish_dir: build/
