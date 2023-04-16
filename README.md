@@ -1,6 +1,6 @@
 <p align="center">
     <a href="" rel="noopener">
-    <img width=600px height=200px src="https://imgur.com/nKsEzen.gif" alt="Project Logo"></a>
+    <img width=600px height=200px src="assets/images/mockup.jpg" alt="Project Logo"></a>
 </p>
 
 <h3 align="center">Event Planner</h3>
