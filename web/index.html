@@ -28,6 +28,8 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
+  <!-- Loader -->
+  <link rel="stylesheet" href="loader.css">
 
   <title>event_planner</title>
   <link rel="manifest" href="manifest.json">
@@ -40,6 +42,15 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <!-- Initialize loader -->
+  <div id="loader">
+    <h1 id="loader-title">Event Planner</h1>
+    <div class="lds-dual-ring"></div>
+  </div>
+  <!-- Remove loader -->
+  <script src="main.dart.js" type="application/javascript"
+    onendload="document.getElementById('loader').remove();"></script>
+
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
