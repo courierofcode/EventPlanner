@@ -6,6 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 // import 'package:flutter/material.dart';
+import 'package:event_planner/screens/signin.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:event_planner/main.dart';
 
@@ -30,8 +31,8 @@ void main() {
   //   // expect(find.text('1'), findsOneWidget);
   // });
   testWidgets('Signin, Signup, and Reset test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp(await selectStartPage()));
+    // Build app Signin screen
+    await tester.pumpWidget(const MyApp(SignInScreen()));
     // Verify widgets are displayed
     expect(find.text(' Sign Up'), findsOneWidget);
     expect(find.text('Sign In'), findsOneWidget);
