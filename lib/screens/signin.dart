@@ -5,17 +5,19 @@ import 'package:event_planner/models/colors.dart';
 import 'package:event_planner/screens/home.dart';
 import 'package:event_planner/screens/signup.dart';
 import 'package:event_planner/screens/reset.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
 class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,11 +25,15 @@ class _SignInScreenState extends State<SignInScreen> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-          hexStringToColor("7645c4"),
-          hexStringToColor("5d8df4"),
-          hexStringToColor("dee6f4")
-        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            gradient: LinearGradient(
+          colors: [
+            hexStringToColor("7645c4"),
+            hexStringToColor("5d8df4"),
+            hexStringToColor("dee6f4")
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        )),
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
@@ -49,18 +55,23 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 5,
                 ),
                 forgetPassword(context),
-                firebaseUIButton(context, "Sign In", () {
+                firebaseUIButton(context, "Sign In", () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.setString('email', _emailTextController.text);
+
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                       .then((value) {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const HomeScreen()));
                   }).onError((error, stackTrace) {
                     debugPrint("Error ${error.toString()}");
+                    prefs.remove('email');
                   });
                 }),
                 signUpOption()
@@ -77,7 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text("Don't have account?",
-            style: TextStyle(color: Colors.white70)),
+            style: TextStyle(color: Colors.black87)),
         GestureDetector(
           onTap: () {
             Navigator.push(context,
@@ -85,7 +96,8 @@ class _SignInScreenState extends State<SignInScreen> {
           },
           child: const Text(
             " Sign Up",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style:
+                TextStyle(color: Colors.black26, fontWeight: FontWeight.bold),
           ),
         )
       ],
@@ -94,17 +106,20 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Widget forgetPassword(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: 500,
       height: 35,
-      alignment: Alignment.bottomRight,
-      child: TextButton(
-        child: const Text(
-          "Forgot Password?",
-          style: TextStyle(color: Colors.white70),
-          textAlign: TextAlign.right,
+      alignment: Alignment.center,
+      child: Container(
+        alignment: Alignment.bottomRight,
+        child: TextButton(
+          child: const Text(
+            "Forgot Password?",
+            style: TextStyle(color: Colors.white70),
+            textAlign: TextAlign.right,
+          ),
+          onPressed: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const ResetPassword())),
         ),
-        onPressed: () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ResetPassword())),
       ),
     );
   }
