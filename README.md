@@ -15,16 +15,16 @@
 
 ---
 
-<p align="center"> TemplateDescription
-    <br> 
-</p>
 
 ## 📝 Table of Contents
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
 - [Usage](#usage)
+- [Deployment](#deployment)
 - [Built Using](#built_using)
+
+
+
 
 ## 🧐 About <a name = "about"></a>
 TemplateAbout
@@ -39,21 +39,14 @@ Web Browser
 ```
 
 ### Features
-- [ ] Signup & Login
-- [ ] User Stories
+- [x] Login & Account Signup
+- [] User can Create events
+- [] User can Read events
+- [] User can Update events
+- [] User can Delete events
+- [x] Logout & Account Deletion
 
 
-### Wireframes
-<p align="center">
-    <a href="" rel="noopener">
-    <img width=200px height=200px src="" alt="Project wireframe"></a>
-</p>
-
-### Mockups
-<p align="center">
-    <a href="" rel="noopener">
-    <img width=200px height=200px src="" alt="Project mockup"></a>
-</p>
 
 ### Demo
 <p align="center">
@@ -69,11 +62,12 @@ TemplateAccess. These instructions will get you a copy of the project up and run
     Process...
 ```
 ## 🚀 Deployment <a name = "deployment"></a>
-- Source Hosted by GitHub
-- Cloud service provider AWS
+- Source Hosted by GitHub with CI/CD
+- Cloud hosting with Firebase
 
 
 ## ⛏️ Built Using <a name = "built_using"></a>
-[<img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Rust_programming_language_black_logo.svg" width=30 height=30 alt="Rust">](https://www.rust-lang.org/)
-[<img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" width=30 height=30 alt="AWS">](https://aws.amazon.com/)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/c/c6/Font_Awesome_5_brands_github-square.svg" width=30 height=30 alt="GitHub">](https://docs.github.com/en)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Google-flutter-logo.svg" width=90 height=30 alt="Flutter">](https://docs.flutter.dev/)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Firebase_Logo.svg" width=90 height=30 alt="Firebase">](https://firebase.google.com/docs)
   
