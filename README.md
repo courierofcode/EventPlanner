@@ -47,7 +47,6 @@ Web Browser
 - [x] Logout & Account Deletion
 
 
-
 ### Demo
 <p align="center">
     <a href="" rel="noopener">
