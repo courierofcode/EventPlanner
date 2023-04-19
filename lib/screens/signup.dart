@@ -3,22 +3,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:event_planner/models/colors.dart';
 import 'package:event_planner/models/logo.dart';
 import 'package:event_planner/screens/home.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:event_planner/models/logo.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+ 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
-
+ 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
-
+ 
 class _SignUpScreenState extends State<SignUpScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _userNameTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _userNameTextController = TextEditingController();
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
             child: Column(
               children: <Widget>[
                 const SizedBox(
@@ -58,22 +57,57 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
                 reusableTextField("Enter Password", Icons.lock_outlined, true,
                     _passwordTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(context, "Sign Up", () {
+                firebaseUIButton(context, "Sign Up", () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.setString('email', _emailTextController.text);
+ 
                   FirebaseAuth.instance
                       .createUserWithEmailAndPassword(
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
-                      .then((value) {
-                    print("Created New Account");
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                      .then((value) async {
+                    final document = await FirebaseFirestore.instance
+                        .collection("users")
+                        .doc(value.user?.uid)
+                        .get();
+                    if (!document.exists) {
+                      // FirebaseAuth user name
+                      value.user
+                          ?.updateDisplayName(_userNameTextController.text);
+                      // Create user's collection of events
+                      await FirebaseFirestore.instance
+                          .collection("events")
+                          .doc(value.user?.uid)
+                          .set({
+                        "event0": "Join Event",
+                        "description0": "Date user started using application",
+                        "email0": _emailTextController.text,
+                        "username0": _userNameTextController.text,
+                        "date0": DateTime.now(),
+                      });
+                      debugPrint("Created New Account");
+                    } else {
+                      throw Exception(
+                          "[Local error] User ${_emailTextController.text} already exists");
+                    }
+                    if (context.mounted) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomeScreen()));
+                    }
                   }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
+                    debugPrint("Error ${error.toString()}");
+                    prefs.remove('email');
                   });
                 })
               ],
