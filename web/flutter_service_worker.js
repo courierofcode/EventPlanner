@@ -7,8 +7,8 @@ const RESOURCES = {
 "canvaskit/profiling/canvaskit.js": "c21852696bc1cc82e8894d851c01921a",
 "canvaskit/profiling/canvaskit.wasm": "371bc4e204443b0d5e774d64a046eb99",
 "canvaskit/canvaskit.wasm": "3de12d898ec208a5f31362cc00f09b9e",
-"index.html": "6eb2f59339a1b17a3ba2d08785c94fd7",
-"/": "6eb2f59339a1b17a3ba2d08785c94fd7",
+"index.html": "dd340b297b7309f78d7251a138e3bf3c",
+"/": "dd340b297b7309f78d7251a138e3bf3c",
 "main.dart.js": "bb38f50e553db9cc709427a7e9bc5fb5",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
@@ -25,10 +25,11 @@ const RESOURCES = {
 "assets/fonts/MaterialIcons-Regular.otf": "e7069dfd19b331be16bed984668fe080",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/NOTICES": "089198bf6f657051eee660cd5471d817",
-"assets/AssetManifest.json": "fad06441905a64e162c1965609b26b43",
+"assets/AssetManifest.json": "48fa1241ef1ea9638ab5b3f1507ec6af",
 "assets/assets/images/event_logo_512.png": "8f985a558dece0de251c4d7c5dc7a018",
 "assets/assets/images/mockup.jpg": "30b2f7fe850eaa4c25665e15555b80e2",
 "assets/assets/images/event_logo_192.png": "aa7ab698a946759814a6009e5ee4c5fb",
+"assets/assets/images/app_design.png": "77b5ca320ad86c268bc0d3099fd6af58",
 "assets/assets/images/event_logo.svg": "e497456c1b02cb8317a5c3d6861215bc"
 };
 
