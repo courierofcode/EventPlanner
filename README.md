@@ -31,14 +31,13 @@ Software Development Project started in a Project Management course at UTA to ga
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 These instructions layout the process guiding design process from conception to deployment. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-## Design
----
-### Tools
+### Design
+#### Tools
 [<img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" width=30 height=60 alt="GitHub">](https://www.figma.com)
 [<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg" width=30 height=60 alt="GitHub">](https://www.google.com)
 
 
-### Features
+#### Features
 - [x] Login & Account Signup
 - [x] User can Create events
 - [x] User can Read events
@@ -47,13 +46,13 @@ These instructions layout the process guiding design process from conception to 
 - [x] Logout & Account Deletion
 
 
-### Mockup
+#### Concept
 <p align="center">
     <a href="" rel="noopener">
     <img width=200px height=250px src="assets\app_demo.gif" alt="Project demo"></a>
 </p>
 
----
+
 ## 🎈 Usage <a name="usage"></a>
 * Install flutter and VS code
 * Create a new flutter application using VS code's command pallete
